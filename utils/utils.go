@@ -2,6 +2,7 @@ package utils
 
 import (
 	"os"
+	"strings"
 )
 
 func Unwrap[T any](value T, err error) T {
@@ -12,6 +13,16 @@ func Unwrap[T any](value T, err error) T {
 	return value
 }
 
+func FindIndex[T comparable](slice []T, predicate func(T) bool) int {
+	for idx, value := range slice {
+		if predicate(value) {
+			return idx
+		}
+	}
+
+	return -1
+}
+
 func ReadInput() string {
-	return string(Unwrap(os.ReadFile("input.txt")))
+	return strings.Trim(string(Unwrap(os.ReadFile("input.txt"))), "\n")
 }

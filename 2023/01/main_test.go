@@ -1,15 +1,18 @@
 package main
 
-import "testing"
+import (
+	"strings"
+	"testing"
+)
 
 func TestPart1(t *testing.T) {
-	input := `
+	input := strings.TrimSpace(`
 1abc2
 pqr3stu8vwx
 a1b2c3d4e5f
 treb7uchet
-`
-	expected := `142`
+`)
+	expected := strings.TrimSpace(`142`)
 
 	result := part1(input)
 
@@ -19,8 +22,16 @@ treb7uchet
 }
 
 func TestPart2(t *testing.T) {
-	input := ``
-	expected := ``
+	input := strings.TrimSpace(`
+two1nine
+eightwothree
+abcone2threexyz
+xtwone3four
+4nineeightseven2
+zoneight234
+7pqrstsixteen
+`)
+	expected := strings.TrimSpace(`281`)
 
 	result := part2(input)
 

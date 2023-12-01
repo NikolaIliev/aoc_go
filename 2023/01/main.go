@@ -3,15 +3,105 @@ package main
 import (
 	"aoc_go/utils"
 	"fmt"
+	"strconv"
+	"strings"
 	"time"
 )
 
 func part1(input string) string {
-	return ""
+	result := 0
+
+	lines := strings.Split(input, "\n")
+
+	for _, line := range lines {
+		num := ""
+		runes := []rune(line)
+
+		for i := 0; i < len(runes); i++ {
+			rune := runes[i]
+
+			if rune >= '0' && rune <= '9' {
+				num += string(rune)
+				break
+			}
+
+		}
+
+		for i := len(runes) - 1; i >= 0; i-- {
+			rune := runes[i]
+
+			if rune >= '0' && rune <= '9' {
+				num += string(rune)
+				break
+			}
+
+		}
+
+		result += utils.Unwrap(strconv.Atoi(num))
+	}
+
+	return strconv.Itoa(result)
 }
 
 func part2(input string) string {
-	return ""
+	digits := []string{"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"}
+	inverse_digits := []string{"eno", "owt", "eerht", "ruof", "evif", "xis", "neves", "thgie", "enin"}
+
+	result := 0
+
+	lines := strings.Split(input, "\n")
+
+	for _, line := range lines {
+		num := ""
+		buf := ""
+		runes := []rune(line)
+
+		for i := 0; i < len(runes); i++ {
+			rune := runes[i]
+
+			if rune >= '0' && rune <= '9' {
+				num += string(rune)
+				break
+			}
+
+			buf += string(rune)
+
+			idx := utils.FindIndex(digits, func(digit string) bool {
+				return strings.HasSuffix(buf, digit)
+			})
+
+			if idx >= 0 {
+				num += strconv.Itoa(idx + 1)
+				break
+			}
+		}
+
+		buf = ""
+
+		for i := len(runes) - 1; i >= 0; i-- {
+			rune := runes[i]
+
+			if rune >= '0' && rune <= '9' {
+				num += string(rune)
+				break
+			}
+
+			buf += string(rune)
+
+			idx := utils.FindIndex(inverse_digits, func(digit string) bool {
+				return strings.HasSuffix(buf, digit)
+			})
+
+			if idx >= 0 {
+				num += strconv.Itoa(idx + 1)
+				break
+			}
+		}
+
+		result += utils.Unwrap(strconv.Atoi(num))
+	}
+
+	return strconv.Itoa(result)
 }
 
 func main() {
