@@ -48,11 +48,14 @@ EOF
 cat << EOF > $dir/main_test.go
 package main
 
-import "testing"
+import (
+	"strings"
+	"testing"
+)
 
 func TestPart1(t *testing.T) {
-	input := \`\`
-	expected := \`\`
+        input := strings.TrimSpace(\`\`)
+        expected := strings.TrimSpace(\`\`)
 
 	result := part1(input)
 
@@ -62,8 +65,8 @@ func TestPart1(t *testing.T) {
 }
 
 func TestPart2(t *testing.T) {
-	input := \`\`
-	expected := \`\`
+        input := strings.TrimSpace(\`\`)
+        expected := strings.TrimSpace(\`\`)
 
 	result := part2(input)
 
